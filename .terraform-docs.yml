@@ -1,0 +1,46 @@
+content: |-
+  # Terraform Module: AWS Bootstrap
+
+  This module is used to bootstrap an AWS account with the following resources:
+  - S3 Bucket for Terraform State
+  - DynamoDB Table for Terraform State Locking
+  - [Optional] Configure GitHub Actions as an IAM OIDC identity provider
+
+  ## Deployment
+
+  This module would initially be manually called and applied via the Terraform CLI (e.g. in your project repo, stored under a `bootstrap` directory), with the state stored within your Git repository. Once provisioned, the Terraform state for this module can be stored within the Git repository and should no longer need to be re-run.
+
+  Example reference to module:
+
+  ```hcl
+  {{ include "examples/bootstrap-with-github-oidc/main.tf" }}
+  ```
+
+  **Note:** Omit the `github_repositories` variable to skip the IAM OIDC IDP configuration for GitHub Actions.
+
+  The following commands can be run to deploy the module:
+
+  ```bash
+  terraform init -upgrade
+  terraform plan
+  terraform apply
+  ```
+
+  Once this is provisioned, you can then reference the remote state in your project repo using the outputs provided by the module (replace variables as appropriate):
+
+  ```hcl
+  {{ include "examples/remote-state.tf" }}
+  ```
+
+  Please see the [examples](./examples) directory for more examples on how to deploy this module.
+
+  ## Updating Docs
+
+  The `terraform-docs` utility is used to generate this README. Follow the below steps to update:
+  1. Make changes to the `.terraform-docs.yml` file
+  2. Fetch the `terraform-docs` binary (https://terraform-docs.io/user-guide/installation/)
+  3. Run `terraform-docs markdown table --output-file ${PWD}/README.md --output-mode inject .`
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
