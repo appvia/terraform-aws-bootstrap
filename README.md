@@ -21,6 +21,7 @@ module "bootstrap" {
   region      = "eu-west-2"
 
   create_oidc_provider = true
+  iam_role_name        = "github"
   iam_role_policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
   max_session_duration = 3600
 
@@ -79,6 +80,7 @@ The `terraform-docs` utility is used to generate this README. Follow the below s
 | <a name="input_create_oidc_provider"></a> [create\_oidc\_provider](#input\_create\_oidc\_provider) | Whether to create an OIDC provider in AWS (only needs to be done once per AWS account) | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | n/a | yes |
 | <a name="input_github_repositories"></a> [github\_repositories](#input\_github\_repositories) | List of GitHub organization/repository names authorised to assume a role in this account via Web Identity Federation | `list(string)` | `[]` | no |
+| <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | Name of the IAM role to create | `string` | `"github"` | no |
 | <a name="input_iam_role_policy_arns"></a> [iam\_role\_policy\_arns](#input\_iam\_role\_policy\_arns) | List of IAM role policy ARNs to attach to the OIDC role | `list(string)` | <pre>[<br>  "arn:aws:iam::aws:policy/AdministratorAccess"<br>]</pre> | no |
 | <a name="input_max_session_duration"></a> [max\_session\_duration](#input\_max\_session\_duration) | Maximum session duration for the OIDC role | `number` | `3600` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name reference for your infrastructure | `string` | n/a | yes |

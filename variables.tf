@@ -14,6 +14,12 @@ variable "github_repositories" {
   default     = []
 }
 
+variable "iam_role_name" {
+  description = "Name of the IAM role to create"
+  type        = string
+  default     = "github"
+}
+
 variable "iam_role_policy_arns" {
   description = "List of IAM role policy ARNs to attach to the OIDC role"
   type        = list(string)
