@@ -6,6 +6,7 @@ module "bootstrap" {
   region      = "eu-west-2"
 
   create_oidc_provider = true
+  iam_role_name        = "github"
   iam_role_policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
   max_session_duration = 3600
 

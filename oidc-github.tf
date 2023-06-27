@@ -6,6 +6,7 @@ module "oidc_github" {
 
   create_oidc_provider = var.create_oidc_provider
   github_repositories  = var.github_repositories
+  iam_role_name        = var.iam_role_name
   iam_role_policy_arns = var.iam_role_policy_arns
   max_session_duration = var.max_session_duration
 
